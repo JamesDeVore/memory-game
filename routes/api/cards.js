@@ -4,14 +4,12 @@ const fetch = require('node-fetch')
 
 router.get('/new', async (req,res) => {
   try{
-    console.log("searching")
-    let deckObject = await fetch("https://deckofcardsapi.com/api/deck/new/shuffle").then(response => response.json());
-    console.log(deckObject)
-
-
+    let deckObject = await fetch("https://deckofcardsapi.com/api/deck/new/draw?count=52").then(response => response.json());
+    res.send(deckObject)
   } catch(e) {
-    console.log(e)
+    res.send({error:e})
   }
 })
+
 
 module.exports = router
